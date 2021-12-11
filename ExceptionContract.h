@@ -19,7 +19,6 @@
  * Attributes: std::string m_expression Error message expression
  * std::string m_file name of file in wich the error is found
  * unsigned int m_line the number of line on wich the error was found
- *
  */
 class ExceptionContract : public std::logic_error
 {
@@ -50,8 +49,6 @@ private:
   std::string m_expression; /**\brief (string) error message expression*/
   std::string m_file; /**\brief (string) file name where the error occured*/
   unsigned int m_line; /**\brief (int( line number where error occured*/
-
-
 };
 
 /**
@@ -125,10 +122,10 @@ public:
 // --- Definition for the Macro controls for the contract
 
 #if !defined(NDEBUG)
-// --- Mode debug
+// --- debug Mode
 
 #define INVARIANTS() \
-      verifieInvariant()
+      verifyInvariant()
 
 #define ASSERTION(f)     \
       if (!(f)) throw AssertionException(__FILE__,__LINE__, #f);
@@ -139,7 +136,7 @@ public:
 #define INVARIANT(f)   \
       if (!(f)) throw InvariantException(__FILE__,__LINE__, #f);
 
-// --- LE MODE RELEASE
+// --- RELEASE MODE
 #else
 
 #define PRECONDITION(f);
@@ -149,6 +146,6 @@ public:
 #define ASSERTION(f);
 
 
-
+#endif  // --- if !defined (NDEBUG)
 #endif /* EXCEPTIONCONTRACT_H */
 

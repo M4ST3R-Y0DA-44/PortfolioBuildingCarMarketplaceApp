@@ -103,7 +103,11 @@ private:
   std::string m_subtype; /**\brief (string) car categorie (sub compact, compact, SUV, etc)*/
   std::string m_vin; /**\brief (string) the vehicules identification number*/
 
-
+  /**
+   * \fn void verifyInvariant () const
+   * \brief method to verify invariant errors
+   */
+  void verifyInvariant () const;
 };
 
 #endif /* AUTO_H */
