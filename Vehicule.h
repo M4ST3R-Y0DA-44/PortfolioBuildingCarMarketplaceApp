@@ -1,24 +1,24 @@
 /**
- * \file   Auto.h
+ * \file   Vehicule.h
  * \author M4ST3R-Y0DA-44
  *
  * \date Created on 10 décembre 2021
  */
 
-#ifndef AUTO_H
-#define AUTO_H
+#ifndef VEHICULE_H
+#define VEHICULE_H
 
 #include <string>
 
 /**
- * \class Auto
+ * \class Vehicule
  * \brief class representing a car with all its attributes and methods. */
-class Auto
+class Vehicule
 {
 public:
 
   /**
-   * \fn   Auto (std::string& p_make, std::string& p_model, int p_year, int p_mileage, std::string& p_color, int p_numOfDoors, std::string& p_subType, std::string& p_vin)
+   * \fn   Vehicule (std::string& p_make, std::string& p_model, int p_year, int p_mileage, std::string& p_color, int p_numOfDoors, std::string& p_subType, std::string& p_vin)
    * \brief Constructor of the Car class
    * \param p_make  (string) contains the make of the car
    * \param p_model (string) contains the model of the car
@@ -29,7 +29,7 @@ public:
    * \param p_transmission (string) contains the gearbox type
    * \param p_subtype (string) car categorie (sub compact, compact, SUV, etc)
    * \param p_vin (string) the vehicules identification number */
-  Auto (const std::string& p_make, const std::string& p_model, const int p_year, const int p_mileage, const std::string& p_color, const int p_numOfDoors, const std::string& p_transmission, const std::string& p_subtype, const std::string& p_vin);
+  Vehicule (const std::string& p_make, const std::string& p_model, const int p_year, const int p_mileage, const std::string& p_color, const std::string& p_transmission, const std::string& p_subtype, const std::string& p_vin);
 
   /**
    * \fn const std::string reqMake () const
@@ -66,12 +66,7 @@ public:
    * \brief method to read the m_numOfDoors attribute
    * \return (int) containing the m_numOfDoors attribute
    */
-  const int reqNumOfDoors () const;
-  /**
-   * \fn const std::string reqTransmission () const
-   * \brief method to read the transmission type
-   * \return (string) containing gearbox type (Auto/Manual/etc)
-   */
+
   const std::string reqTransmission () const;
   /**
    * \fn const std::string reqSubtype () const
@@ -92,13 +87,19 @@ public:
    */
   const std::string reqInfoTitleAuto () const;
 
+
+  /**
+   * \fn const std::string reqInformation() const
+   * \brief method to read all the information regarding an Auto
+   * \return (string) containing all the information regarding the Vehicule
+   */
+
 private:
   std::string m_make; /**\brief (string) contains the make of the car*/
   std::string m_model; /**\brief (string) contains the model of the car*/
   int m_year; /**\brief (int) contains the year of the car*/
   int m_mileage; /**\brief (int) contains the mileage of the car*/
   std::string m_color; /**\brief (string) contains the color of the car*/
-  int m_numOfDoors; /**\brief (int) number of doors for the car*/
   std::string m_transmission; /**\brief (string) gearbox type (Auto/Manual/etc)*/
   std::string m_subtype; /**\brief (string) car categorie (sub compact, compact, SUV, etc)*/
   std::string m_vin; /**\brief (string) the vehicules identification number*/
@@ -110,5 +111,5 @@ private:
   void verifyInvariant () const;
 };
 
-#endif /* AUTO_H */
+#endif /* VEHICULE_H */
 
