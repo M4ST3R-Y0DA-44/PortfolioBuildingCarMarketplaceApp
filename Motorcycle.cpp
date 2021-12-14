@@ -10,6 +10,7 @@
 #include "Motorcycle.h"
 #include "ExceptionContract.h"
 #include "sstream"
+#include "Utilities.h"
 
 using namespace std;
 using namespace VehiculeManager;
@@ -20,7 +21,7 @@ Motorcycle::Motorcycle (const string& p_make, const string& p_model, const int p
 {
   PRECONDITION (p_enginecc > 0);
   PRECONDITION (p_enginecc < 2500);
-  PRECONDITION (p_bikeCategory.size () > 0);
+  PRECONDITION (usefull::ValidateStringForNumbersAndEmpty (p_bikeCategory));
 
   POSTCONDITION (reqEnginecc () == p_enginecc);
   POSTCONDITION (reqBikeCategory () == p_bikeCategory);
@@ -69,7 +70,7 @@ Motorcycle::clone () const
 void
 Motorcycle::verifyInvariant () const
 {
-  INVARIANT (m_enginecc > 0);
-  INVARIANT (m_enginecc < 2500);
-  INVARIANT (m_bikeCategory.size () > 0);
+  INVARIANT (reqEnginecc () > 0);
+  INVARIANT (reqEnginecc () < 2500);
+  INVARIANT (usefull::ValidateStringForNumbersAndEmpty (reqBikeCategory ()));
 }
