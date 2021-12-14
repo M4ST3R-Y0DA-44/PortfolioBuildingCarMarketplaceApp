@@ -12,8 +12,11 @@
 #include "ExceptionContract.h"
 
 
+using namespace std;
+
+
 /*constructor of class Auto*/
-Auto::Auto (std::string& p_make, std::string& p_model, int p_year, int p_mileage, std::string& p_color, int p_numOfDoors, std::string& p_transmission, std::string& p_subtype, std::string& p_vin) : m_make (p_make), m_model (p_model), m_year (p_year), m_mileage (p_mileage), m_color (p_color), m_numOfDoors (p_numOfDoors), m_transmission (p_transmission), m_subtype (p_subtype), m_vin (p_vin)
+Auto::Auto (const string& p_make, const string& p_model, const int p_year, const int p_mileage, const string& p_color, const int p_numOfDoors, const string& p_transmission, const string& p_subtype, const string& p_vin) : m_make (p_make), m_model (p_model), m_year (p_year), m_mileage (p_mileage), m_color (p_color), m_numOfDoors (p_numOfDoors), m_transmission (p_transmission), m_subtype (p_subtype), m_vin (p_vin)
 {
   PRECONDITION (p_make.size () > 0 ); /*size()>0 will all be changed in the futur with a function to validate names*/
   PRECONDITION (p_model.size () > 0); /*size()>0 will all be changed in the futur with a function to validate names*/
@@ -28,15 +31,15 @@ Auto::Auto (std::string& p_make, std::string& p_model, int p_year, int p_mileage
   PRECONDITION (p_subtype.size () > 0); /*size()>0 will all be changed in the futur with a function to validate names*/
   PRECONDITION (p_vin.size () > 0); /*to be modified with a vin validator function*/
 
-  POSTCONDITION (m_make = p_make);
-  POSTCONDITION (m_model = p_model);
-  POSTCONDITION (m_year = p_year);
-  POSTCONDITION (m_mileage = p_mileage);
-  POSTCONDITION (m_color = p_color);
-  POSTCONDITION (m_numOfDoors = p_numOfDoors);
-  POSTCONDITION (m_transmission = p_transmission);
-  POSTCONDITION (m_subtype = p_subtype);
-  POSTCONDITION (m_vin = p_vin);
+  POSTCONDITION (reqMake () == p_make);
+  POSTCONDITION (reqModel () == p_model);
+  POSTCONDITION (reqYear () == p_year);
+  POSTCONDITION (reqMileage () == p_mileage);
+  POSTCONDITION (reqColor () == p_color);
+  POSTCONDITION (reqNumOfDoors () == p_numOfDoors);
+  POSTCONDITION (reqTransmission () == p_transmission);
+  POSTCONDITION (reqSubtype () == p_subtype);
+  POSTCONDITION (reqVin () == p_vin);
 
   INVARIANTS ();
 }
@@ -45,7 +48,7 @@ Auto::Auto (std::string& p_make, std::string& p_model, int p_year, int p_mileage
 /*request method for make attribute*/
 
 
-const std::string
+const string
 Auto::reqMake () const
 {
   return m_make;
@@ -53,7 +56,7 @@ Auto::reqMake () const
 
 
 /*request method for model attribute*/
-const std::string
+const string
 Auto::reqModel () const
 {
   return m_model;
@@ -77,7 +80,7 @@ Auto::reqMileage () const
 
 
 /*request method for color attribute*/
-const std::string
+const string
 Auto::reqColor () const
 {
   return m_color;
@@ -93,7 +96,7 @@ Auto::reqNumOfDoors () const
 
 
 /*request method for transmission*/
-const std::string
+const string
 Auto::reqTransmission () const
 {
   return m_transmission;
@@ -101,15 +104,15 @@ Auto::reqTransmission () const
 
 
 /*request method for subtype attribute*/
-const std::string
-Auto::reqSubType () const
+const string
+Auto::reqSubtype () const
 {
   return m_subtype;
 }
 
 
 /*request method for vin attribute*/
-const std::string
+const string
 Auto::reqVin () const
 {
   return m_vin;
@@ -117,10 +120,10 @@ Auto::reqVin () const
 
 
 /*request for the information regarding the vehicule in a title formated string*/
-const std::string
+const string
 Auto::reqInfoTitleAuto () const
 {
-  std::ostringstream ostream;
+  ostringstream ostream;
   ostream << reqYear () << " " << reqMake () << " " << reqModel ();
   return ostream.str ();
 }

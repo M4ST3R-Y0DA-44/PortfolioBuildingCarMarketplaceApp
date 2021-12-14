@@ -29,7 +29,7 @@ public:
    * \param p_transmission (string) contains the gearbox type
    * \param p_subtype (string) car categorie (sub compact, compact, SUV, etc)
    * \param p_vin (string) the vehicules identification number */
-  Auto (std::string& p_make, std::string& p_model, int p_year, int p_mileage, std::string& p_color, int p_numOfDoors, std::string& p_transmission, std::string& p_subtype, std::string& p_vin);
+  Auto (const std::string& p_make, const std::string& p_model, const int p_year, const int p_mileage, const std::string& p_color, const int p_numOfDoors, const std::string& p_transmission, const std::string& p_subtype, const std::string& p_vin);
 
   /**
    * \fn const std::string reqMake () const
@@ -78,7 +78,7 @@ public:
    * \brief method to read the m_subType attribute
    * \return (string) containing the m_subType attribute
    */
-  const std::string reqSubType () const;
+  const std::string reqSubtype () const;
   /**
    * \fn const std::string reqVin () const
    * \brief method to read the m_vin attribute
