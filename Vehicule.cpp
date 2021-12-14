@@ -13,6 +13,7 @@
 
 
 using namespace std;
+using namespace VehiculeManager;
 
 
 /*constructor of class Auto*/
@@ -43,8 +44,6 @@ Vehicule::Vehicule (const string& p_make, const string& p_model, const int p_yea
 
 
 /*request method for make attribute*/
-
-
 const string
 Vehicule::reqMake () const
 {
@@ -116,6 +115,21 @@ Vehicule::reqInfoTitle () const
   ostream << reqYear () << " " << reqMake () << " " << reqModel ();
   return ostream.str ();
 }
+
+
+/*method to request all information on the vehicule, will be implemented in all subclasses*/
+const string
+Vehicule::reqAllInfo () const
+{
+  ostringstream ostream;
+  ostream << reqInfoTitle () << endl
+          << "vin : " << reqVin () << endl
+          << "mileage : " << reqMileage () << endl
+          << "color : " << reqColor () << endl
+          << "transmission : " << reqTransmission () << endl
+          << "vehicule type : " << reqSubtype () << endl;
+  return ostream.str ();
+};
 
 
 /*Method to verify Invariants*/

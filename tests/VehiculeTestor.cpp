@@ -10,6 +10,8 @@
 #include "ExceptionContract.h"
 #include <gtest/gtest.h>
 
+using namespace VehiculeManager;
+
 /**
  * \class VehiculeTesting
  * \brief made specifically to be able to test the Auto class. The Auto class will becomde a virtual pure class so we will need the AutoTesting class to be able to create objects of the class to test the class.
@@ -35,6 +37,16 @@ public:
   VehiculeTesting (const std::string& p_make, const std::string& p_model, const int p_year, const int p_mileage, const std::string& p_color, const std::string& p_transmission, const std::string& p_subtype, const std::string& p_vin) : Vehicule (p_make, p_model, p_year, p_mileage, p_color, p_transmission, p_subtype, p_vin) { };
 
 
+  const std::string
+  reqAllInfo () const
+  {
+    return Vehicule::reqAllInfo ();
+  };
+
+
+  Vehicule*
+  clone () const { };
+
 } ;
 
 
@@ -46,9 +58,8 @@ public:
  *                  invalid model (empty)
  *                  invalid year (year too low)
  *                  invalid year (year too high)
- *                  invalid year (null)
- *                  invalid mileage (null)
- *                  invalid mileage (Null)
+ *                  invalid year (0)
+ *                  invalid mileage (0)
  *                  invalid mileage (mileage too high)
  *                  invalid color (empty)
  *                  invalid color (color contains numbers)
@@ -114,21 +125,7 @@ TEST (Vehicule, invalidConstructorYearTooHigh)
 /*Invalid constructor with Year null*/
 TEST (Vehicule, invalidConstructorYearNull)
 {
-  ASSERT_THROW (VehiculeTesting ("ford", "focus", NULL, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
-};
-
-
-/*Invalid constructor with mileage null*/
-TEST (Vehicule, invalidConstructorMileageNull)
-{
-  ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, NULL, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
-};
-
-
-/*Invalid constructor with mileage too low*/
-TEST (Vehicule, invalidConstructorMileageTooLow)
-{
-  ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, -25, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
+  ASSERT_THROW (VehiculeTesting ("ford", "focus", 0, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
@@ -267,4 +264,11 @@ TEST_F (VehiculeTestor, reqVin)
 TEST_F (VehiculeTestor, reqInfoTitle)
 {
   ASSERT_EQ ("2004 ford focus", f_VehiculeTestor.reqInfoTitle ());
+};
+
+
+/*Test for method reqAllInfo()*/
+TEST_F (VehiculeTestor, reqAllInfo)
+{
+  ASSERT_EQ ("2004 ford focus\nvin : XYZSED1234567\nmileage : 124500\ncolor : black\ntransmission : automatic\nvehicule type : auto\n", f_VehiculeTestor.reqAllInfo ());
 };
