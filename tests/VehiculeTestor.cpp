@@ -10,10 +10,6 @@
 #include "ExceptionContract.h"
 #include <gtest/gtest.h>
 
-#include <iostream>
-#include <sstream>
-#include <stdlib.h>
-
 /**
  * \class VehiculeTesting
  * \brief made specifically to be able to test the Auto class. The Auto class will becomde a virtual pure class so we will need the AutoTesting class to be able to create objects of the class to test the class.
