@@ -81,11 +81,11 @@ public:
    */
   const std::string reqVin () const;
   /**
-   * \fn const std::string reqInfoTitleAuto() const
+   * \fn const std::string reqInfoTitle() const
    * \brief method to read the information of the car in a title formated string
    * \return (string) information on the car in a title formated string*
    */
-  const std::string reqInfoTitleAuto () const;
+  const std::string reqInfoTitle () const;
 
 
   /**

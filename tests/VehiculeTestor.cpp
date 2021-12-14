@@ -9,7 +9,10 @@
 #include "Vehicule.h"
 #include "ExceptionContract.h"
 #include <gtest/gtest.h>
-#include "ExceptionContract.h"
+
+#include <iostream>
+#include <sstream>
+#include <stdlib.h>
 
 /**
  * \class VehiculeTesting
@@ -29,7 +32,6 @@ public:
    * @param p_year
    * @param p_mileage
    * @param p_color
-   * @param p_numOfDoors
    * @param p_transmission
    * @param p_subtype
    * @param p_vin
@@ -61,7 +63,8 @@ public:
  */
 
 
-TEST (VehiculeTesting, ValidConstructorParam)
+/*Test for constructor with all valid parameters*/
+TEST (Vehicule, ValidConstructorParam)
 
 {
   VehiculeTesting f_testor = VehiculeTesting ("ford", "focus", 2004, 124500, "black", "automatic", "auto", "XYZSED1234567");
@@ -77,97 +80,195 @@ TEST (VehiculeTesting, ValidConstructorParam)
 };
 
 
-TEST (VehiculeTesting, invalidConstructorMakeEmpty)
+/*Invalid Constructor with empty make parameter*/
+TEST (Vehicule, invalidConstructorMakeEmpty)
 {
   ASSERT_THROW (VehiculeTesting ("", "focus", 2004, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorMakeNumber)
+/*Invalid Construcxtor with a number in the make parameter field*/
+TEST (Vehicule, invalidConstructorMakeNumber)
 {
   ASSERT_THROW (VehiculeTesting ("for44d", "focus", 2004, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorModelEmpty)
+/*Invalid constructor with empty model field*/
+TEST (Vehicule, invalidConstructorModelEmpty)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "", 2004, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorYearTooLow)
+/*Invalid constructor with year too low to fit on scale*/
+TEST (Vehicule, invalidConstructorYearTooLow)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 1800, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorYearTooHigh)
+/*Invalid constructor with year too high to fit on scale*/
+TEST (Vehicule, invalidConstructorYearTooHigh)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2030, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorYearNull)
+/*Invalid constructor with Year null*/
+TEST (Vehicule, invalidConstructorYearNull)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", NULL, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorMileageNull)
+/*Invalid constructor with mileage null*/
+TEST (Vehicule, invalidConstructorMileageNull)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, NULL, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorMileageTooLow)
+/*Invalid constructor with mileage too low*/
+TEST (Vehicule, invalidConstructorMileageTooLow)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, -25, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorMileageZero)
+/*Invalid constructor with mileage at zero*/
+TEST (Vehicule, invalidConstructorMileageZero)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 0, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorMileageTooHigh)
+/*Invalid constructor with mileage too high*/
+TEST (Vehicule, invalidConstructorMileageTooHigh)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 1000001, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorColorEmpty)
+/*Invalid constructor with empty color parameter*/
+TEST (Vehicule, invalidConstructorColorEmpty)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 124500, "", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorColorContainsNumber)
+/*Invalid constructor with a color parameter containing a number*/
+TEST (Vehicule, invalidConstructorColorContainsNumber)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 124500, "bl4ck", "automatic", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorTransmissionEmpty)
+/*Invalide constructor with empty transmission parameter*/
+TEST (Vehicule, invalidConstructorTransmissionEmpty)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 124500, "black", "", "auto", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorSubtypeEmpty)
+/*Invalid constructor with empty subtype parameter*/
+TEST (Vehicule, invalidConstructorSubtypeEmpty)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 124500, "black", "automatic", "", "XYZSED1234567"), PreconditionException);
 };
 
 
-TEST (VehiculeTesting,  invalidConstructorVinEmpty)
+/*Invalid constructor with empty vin parameter*/
+TEST (Vehicule,  invalidConstructorVinEmpty)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 124500, "black", "automatic", "auto", ""), PreconditionException);
 };
 
 
-TEST (VehiculeTesting, invalidConstructorVinNotValid)
+/*Inavlid constructor with invalid vin parameter*/
+TEST (Vehicule, invalidConstructorVinNotValid)
 {
   ASSERT_THROW (VehiculeTesting ("ford", "focus", 2004, 124500, "black", "automatic", "auto", "XYZSED1234567"), PreconditionException);
+};
+
+/**
+ * \class VehiculeTesto
+ * \brief class used to test methods of the vehicule class.
+ */
+class VehiculeTestor : public ::testing::Test
+{
+
+public:
+
+
+  /**\fn VehiculeTestor()
+   * \brief constructor used to generate VehiculeTesting objects.
+   */
+  VehiculeTestor () : f_VehiculeTestor ("ford", "focus", 2004, 124500, "black", "automatic", "auto", "XYZSED1234567") { };
+
+  VehiculeTesting f_VehiculeTestor;
+} ;
+
+
+/*Test for method reqMake()*/
+TEST_F (VehiculeTestor, reqMake)
+{
+  ASSERT_EQ ("ford", f_VehiculeTestor.reqMake ());
+};
+
+
+/*Test for method reqModel()*/
+TEST_F (VehiculeTestor, reqModel)
+{
+  ASSERT_EQ ("focus", f_VehiculeTestor.reqModel ());
+};
+
+
+/*Test for method reqYear()*/
+
+TEST_F (VehiculeTestor, reqYear)
+{
+  ASSERT_EQ (2004, f_VehiculeTestor.reqYear ());
+};
+
+
+/*Test for method reqMileage()*/
+TEST_F (VehiculeTestor, reqMileage)
+{
+  ASSERT_EQ (124500, f_VehiculeTestor.reqMileage ());
+};
+
+
+/*Test for method reqColor()*/
+TEST_F (VehiculeTestor, reqcolor)
+{
+  ASSERT_EQ ("black", f_VehiculeTestor.reqColor ());
+};
+
+
+/*Test for method reqTransmission()*/
+TEST_F (VehiculeTestor, reqTransmission)
+{
+  ASSERT_EQ ("automatic", f_VehiculeTestor.reqTransmission ());
+};
+
+
+/*Test for method reqSubtype()*/
+TEST_F (VehiculeTestor, reqSubtype)
+{
+  ASSERT_EQ ("auto", f_VehiculeTestor.reqSubtype ());
+};
+
+
+/*Test for method reqVin()*/
+TEST_F (VehiculeTestor, reqVin)
+{
+  ASSERT_EQ ("XYZSED1234567", f_VehiculeTestor.reqVin ());
+};
+
+
+/*Test for method reqInfoTitle()*/
+TEST_F (VehiculeTestor, reqInfoTitle)
+{
+  ASSERT_EQ ("2004 ford focus", f_VehiculeTestor.reqInfoTitle ());
 };

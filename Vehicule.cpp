@@ -110,7 +110,7 @@ Vehicule::reqVin () const
 
 /*request for the information regarding the vehicule in a title formated string*/
 const string
-Vehicule::reqInfoTitleAuto () const
+Vehicule::reqInfoTitle () const
 {
   ostringstream ostream;
   ostream << reqYear () << " " << reqMake () << " " << reqModel ();
